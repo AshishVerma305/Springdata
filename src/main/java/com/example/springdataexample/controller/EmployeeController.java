@@ -2,10 +2,13 @@ package com.example.springdataexample.controller;
 
 import com.example.springdataexample.dto.EmployeeRequest;
 import com.example.springdataexample.dto.EmployeeResponse;
+import com.example.springdataexample.repository.DepartmentRepository;
 import com.example.springdataexample.service.EmployeeService;
 import com.example.springdataexample.service.impl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/employee")
@@ -31,5 +34,10 @@ public class EmployeeController {
     public EmployeeResponse deleteEmployee(@PathVariable("id") Long id)
     {
         return employeeService.deleteEmployeeById(id);
+    }
+    @GetMapping("/department{id}/")
+    public List<EmployeeResponse> getEmployeeListByDepartment(@PathVariable("id") long departmentId)
+    {
+        return employeeService.getEmployeeListByDepartment(departmentId);
     }
 }
